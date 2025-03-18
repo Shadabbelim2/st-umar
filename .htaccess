@@ -1,0 +1,15 @@
+IndexIgnore * # prevent directory listing
+
+Order deny,allow
+Allow from *
+
+# ------------------------------------------
+# Rewrite so that php extensions are not shown
+RewriteEngine on
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.*)$ $1.php
+
+# Custom 404 error page
+ErrorDocument 404 /404.php
